@@ -28,7 +28,8 @@ function App() {
     await soundEngine.resume();
 
     // Pre-load the external audio
-    await soundEngine.loadFile('/audio/loading.m4a', 'boot_sound');
+    const audioPath = `${import.meta.env.BASE_URL}audio/loading.m4a`.replace(/\/+/g, '/');
+    await soundEngine.loadFile(audioPath, 'boot_sound');
 
     setBootStage('booting');
     soundEngine.playFile('boot_sound', 0.6, 11);

@@ -9,7 +9,8 @@ const MusicToggle = () => {
     useEffect(() => {
         // Attempt to load BGM on mount
         const loadBGM = async () => {
-            await soundEngine.loadFile('/audio/bgm.mp3', 'bgm');
+            const bgmPath = `${import.meta.env.BASE_URL}audio/bgm.mp3`.replace(/\/+/g, '/');
+            await soundEngine.loadFile(bgmPath, 'bgm');
             setIsLoaded(true);
         };
         loadBGM();
@@ -33,8 +34,8 @@ const MusicToggle = () => {
             <button
                 onClick={handleToggle}
                 className={`group relative flex items-center justify-center p-3 rounded-full border transition-all duration-500 overflow-hidden ${isPlaying
-                        ? 'bg-matrix-green/20 border-matrix-green text-matrix-green shadow-[0_0_15px_rgba(0,255,65,0.3)]'
-                        : 'bg-matrix-dark/80 border-matrix-green/30 text-matrix-green/50 hover:border-matrix-green hover:text-matrix-green'
+                    ? 'bg-matrix-green/20 border-matrix-green text-matrix-green shadow-[0_0_15px_rgba(0,255,65,0.3)]'
+                    : 'bg-matrix-dark/80 border-matrix-green/30 text-matrix-green/50 hover:border-matrix-green hover:text-matrix-green'
                     }`}
                 title={isPlaying ? "Mute Background Music" : "Play Background Music"}
             >
